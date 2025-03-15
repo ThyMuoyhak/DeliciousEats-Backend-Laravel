@@ -41,5 +41,36 @@ class EmployeeController extends Controller
         return redirect()->route('employees.index')->with('success', 'Employee added successfully!');
     }
 
+    public function update(Request $request, Employee $employee)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'department' => 'required|string|max:255',
+            'status' => 'required|string|in:Active,Inactive,On Leave',
+        ]);
+
+        // Update employee with validated data
+        $employee->update($validated);
+
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
+    }
+
+
+    public function destroy(Employee $employee)
+    {
+        // Delete the employee record
+        $employee->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully');
+    }
+
+    public function edit(Employee $employee)
+    {
+        return view('employees.edit', compact('employee'));
+    }
+
+
    
 }

@@ -38,4 +38,44 @@ class ProjectController extends Controller
         // Redirect to the projects list page
         return redirect()->route('projects.index')->with('success', 'Project added successfully!');
     }
+
+    public function edit($id)
+    {
+        // Retrieve the project by its ID
+        $project = Project::findOrFail($id);
+
+        // Return the view with the project data
+        return view('projects.edit', compact('project'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the incoming data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
+
+        // Find the project and update it
+        $project = Project::findOrFail($id);
+        $project->update($validatedData);
+
+        // Redirect back with success message
+        return redirect()->route('projects.index')->with('success', 'Project updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        // Find the project by ID and delete it
+        $project = Project::findOrFail($id);
+        $project->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('projects.index')->with('success', 'Project deleted successfully');
+    }
+
+
 }

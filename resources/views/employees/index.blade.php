@@ -13,31 +13,34 @@
         </a>
     </div>
 
-    <!-- Employee Table -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+       <!-- Employee Table (Dark Mode) -->
+    <div class="bg-gray-900 p-6 rounded-lg shadow-xl border border-gray-800" data-aos="fade-up" data-aos-delay="400">
         <div class="overflow-x-auto">
-            <table class="min-w-full bg-gray-700 rounded-lg">
+            <table class="min-w-full bg-gray-800 rounded-lg border border-gray-700">
                 <thead>
-                    <tr class="text-left border-b border-gray-600">
-                        <th class="px-4 py-3">Name</th>
-                        <th class="px-4 py-3">Position</th>
-                        <th class="px-4 py-3">Department</th>
-                        <th class="px-4 py-3">Status</th>
-                        <th class="px-4 py-3">Actions</th>
+                    <tr class="text-left bg-gray-700 border-b border-gray-600 text-gray-300">
+                        <th class="px-6 py-3 font-semibold">Name</th>
+                        <th class="px-6 py-3 font-semibold">Position</th>
+                        <th class="px-6 py-3 font-semibold">Department</th>
+                        <th class="px-6 py-3 font-semibold">Status</th>
+                        <th class="px-6 py-3 font-semibold">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-gray-300">
                     @foreach($employees as $employee)
-                        <tr class="hover:bg-gray-600 transition duration-200">
-                            <td class="px-4 py-3">{{ $employee->name }}</td>
-                            <td class="px-4 py-3">{{ $employee->position }}</td>
-                            <td class="px-4 py-3">{{ $employee->department }}</td>
-                            <td class="px-4 py-3">
-                                <span class="bg-green-500 text-white px-2 py-1 rounded-full text-sm">{{ $employee->status }}</span>
+                        <tr class="border-b border-gray-700 hover:bg-gray-700 transition duration-300 ease-in-out" data-aos="fade-right" data-aos-delay="{{ $loop->index * 50 }}">
+                            <td class="px-6 py-4">{{ $employee->name }}</td>
+                            <td class="px-6 py-4">{{ $employee->position }}</td>
+                            <td class="px-6 py-4">{{ $employee->department }}</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 text-sm font-semibold rounded-full
+                                    {{ $employee->status == 'Active' ? 'bg-green-500 text-white' : 'bg-red-500 text-white' }}">
+                                    {{ $employee->status }}
+                                </span>
                             </td>
-                            <td class="px-4 py-3">
-                                <a href="#" class="text-blue-400 hover:text-blue-300 mr-2">Edit</a>
-                                <a href="#" class="text-red-400 hover:text-red-300">Delete</a>
+                            <td class="px-6 py-4 flex space-x-4">
+                                <a href="#" class="text-blue-400 hover:text-blue-300 transition duration-200">Edit</a>
+                                <a href="#" class="text-red-400 hover:text-red-300 transition duration-200">Delete</a>
                             </td>
                         </tr>
                     @endforeach
@@ -45,4 +48,11 @@
             </table>
         </div>
     </div>
+    <script>
+        AOS.init({
+            duration: 1000, // Animation duration in milliseconds
+            easing: 'ease-in-out', // Easing type
+            once: true, // Whether animation should happen only once
+        });
+    </script>
 @endsection
