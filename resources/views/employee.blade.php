@@ -13,7 +13,7 @@
         </a>
     </div>
 
-      <!-- Employee Table (Dark Mode) -->
+    <!-- Employee Table (Dark Mode) -->
     <div class="bg-gray-900 p-6 rounded-lg shadow-xl border border-gray-800" data-aos="fade-up" data-aos-delay="400">
         <div class="overflow-x-auto">
             <table class="min-w-full bg-gray-800 rounded-lg border border-gray-700">
@@ -49,13 +49,18 @@
                                     <button type="submit" class="text-red-400 hover:text-red-300 transition duration-200">Delete</button>
                                 </form>
                             </td>
-                            
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        
+        <!-- Pagination -->
+        <div class="mt-6 flex justify-center bg-gray-900">
+            {{ $employees->links('vendor.pagination.tailwind') }}
+        </div>
     </div>
+
     <script>
         AOS.init({
             duration: 1000, // Animation duration in milliseconds

@@ -27,7 +27,6 @@
         </div>
     </div>
 
-
    <!-- Employee Table (Dark Mode) -->
     <div class="bg-gray-900 p-6 rounded-lg shadow-xl border border-gray-800" data-aos="fade-up" data-aos-delay="400">
         <div class="overflow-x-auto">
@@ -64,11 +63,15 @@
                                     <button type="submit" class="text-red-400 hover:text-red-300 transition duration-200">Delete</button>
                                 </form>
                             </td>
-                            
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        
+        <!-- Dark Mode Pagination -->
+        <div class="mt-6 flex justify-center">
+            {{ $employees->links('vendor.pagination.tailwind') }}
         </div>
     </div>
 

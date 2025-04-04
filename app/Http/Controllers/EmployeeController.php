@@ -9,13 +9,14 @@ use App\Models\Employee;
 class EmployeeController extends Controller
 {
     public function index()
-    {
-        // Fetch all employees from the database
-        $employees = Employee::all();
+{
+    // Fetch employees with pagination (10 records per page)
+    $employees = Employee::paginate(10);
 
-        // Pass the employees data to the view
-        return view('employee', compact('employees'));
-    }
+    // Pass the employees data to the view
+    return view('employee', compact('employees'));
+}
+
 
     public function create()
     {
