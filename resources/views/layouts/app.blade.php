@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Employee</title>
-     <!-- Google Fonts -->
-     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+     <!-- Favicon -->
+     <link rel="icon" href="https://www.shutterstock.com/image-vector/vector-cat-face-minimalist-adorable-600nw-2426797721.jpg" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Include Heroicons (for icons) -->
     <script src="https://unpkg.com/@heroicons/vue@1.0.5/dist/icons.js" defer></script>
@@ -36,7 +38,7 @@
                     </a>
                 </li>
                 <li class="mb-2">
-                    <a href="/employee" class="font-poppins flex items-center p-2 hover:bg-gray-700 rounded transition duration-200">
+                    <a href="/employees" class="font-poppins flex items-center p-2 hover:bg-gray-700 rounded transition duration-200">
                         <span class="material-icons mr-2">people</span>
                         Employees
                     </a>
@@ -71,8 +73,17 @@
                         Develop By
                     </a>
                 </li>
-                
-                
+                <!-- Logout Button -->
+                <li class="mb-2 mt-6">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <button type="submit" class="font-poppins flex items-center p-2 hover:bg-gray-700 rounded transition duration-200">
+                            <span class="material-icons mr-2">logout</span>
+                            Logout
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
 
@@ -93,8 +104,6 @@
             </p>
         </div>
     </footer>
-
-
 
     <script>
         AOS.init();
