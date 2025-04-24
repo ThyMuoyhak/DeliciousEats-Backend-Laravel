@@ -7,7 +7,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\BackupController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\AuthController;
 
 // Public Routes
@@ -71,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
     // Settings Routes
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
+
 });
 
 // Development Route (For testing or development purposes)
