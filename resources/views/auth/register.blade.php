@@ -154,7 +154,7 @@
         <p id="error-message" class="text-red-400 text-center text-sm"></p>
       </div>
 
-      <form id="register-form" action="/register" method="POST" class="space-y-5" data-aos="fade-up" data-aos-delay="600">
+      <form id="register-form" action="/register.submit" method="POST" class="space-y-5" data-aos="fade-up" data-aos-delay="600">
         <!-- CSRF protection -->
         <input type="hidden" name="_token" value="">
         

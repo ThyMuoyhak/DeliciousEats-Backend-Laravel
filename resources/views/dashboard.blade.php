@@ -292,11 +292,67 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Products Table -->
+   
+
             
             <!-- Dark Mode Pagination -->
             <div class="px-6 py-4 bg-gray-900 border-t border-gray-700">
                 {{ $employees->links('vendor.pagination.tailwind') }}
             </div>
+        </div>
+        <br> <br>
+        <div class="overflow-x-auto" data-aos="fade-up" data-aos-delay="200">
+            <table class="w-full border-collapse rounded-xl overflow-hidden border border-gray-700 bg-gray-800">
+                <thead>
+                    <tr class="bg-gray-700 text-gray-300">
+                        <th class="border border-gray-700 p-3 text-left">Image</th>
+                        <th class="border border-gray-700 p-3 text-left">Code</th>
+                        <th class="border border-gray-700 p-3 text-left">Name</th>
+                        <th class="border border-gray-700 p-3 text-left">Category</th>
+                        <th class="border border-gray-700 p-3 text-left">Quantity</th>
+                        <th class="border border-gray-700 p-3 text-left">Price</th>
+                        <th class="border border-gray-700 p-3 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($products as $product)
+                        <tr class="hover:bg-gray-700 transition duration-150">
+                            <td class="px-4 py-2 text-sm text-gray-800">
+                                @if ($product->image)
+                                    <img src="{{ Storage::url($product->image) }}" alt="{{ $product->pro_name }}" class="h-16 w-16 object-cover rounded">
+                                @else
+                                    <span>No Image</span>
+                                @endif
+                            </td>
+                            <td class="border border-gray-700 p-3">{{ $product->pro_code }}</td>
+                            <td class="border border-gray-700 p-3">{{ $product->pro_name }}</td>
+                            <td class="border border-gray-700 p-3">{{ $product->category ? $product->category->name : 'No Category' }}</td>
+                            <td class="border border-gray-700 p-3">{{ $product->qty }}</td>
+                            <td class="border border-gray-700 p-3">{{ number_format($product->price, 2) }}</td>
+                            <td class="border border-gray-700 p-3">
+                                <div class="flex gap-2">
+                                    <a href="{{ route('products.edit', $product->pro_id) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded transition duration-200">
+                                        Edit
+                                    </a>
+                                    <form action="{{ route('products.destroy', $product->pro_id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded transition duration-200">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="border border-gray-700 p-4 text-center text-gray-400">No products found.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
         <br> <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-6 py-6 bg-gray-800 bg-opacity-60 p-6 rounded-2xl shadow-xl border border-gray-700 relative">

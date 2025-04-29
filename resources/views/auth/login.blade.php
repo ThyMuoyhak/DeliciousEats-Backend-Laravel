@@ -87,8 +87,8 @@
         </div>
       </div>
       
-      <h2 class="text-3xl font-bold text-center mb-2 text-white" data-aos="fade-down" data-aos-delay="300">Welcome Back</h2>
-      <p class="text-center text-gray-400 mb-8" data-aos="fade-down" data-aos-delay="400">Sign in to continue your journey</p>
+      <h2 class="text-3xl font-bold text-center mb-2 text-white" data-aos="fade-down" data-aos-delay="300">Login to Admin</h2>
+      <p class="text-center text-gray-400 mb-8" data-aos="fade-down" data-aos-delay="400">Sign in to continue your Account</p>
 
       @if (session('success'))
         <div class="mb-6 px-4 py-3 rounded-lg bg-green-900/50 border border-green-500" data-aos="fade-in" data-aos-delay="500">
@@ -170,35 +170,9 @@
         </div>
       </form>
 
-      <div class="relative flex items-center justify-center mt-8 mb-4">
-        <div class="absolute inset-0 flex items-center">
-          <div class="w-full border-t border-gray-700"></div>
-        </div>
-        <div class="relative px-4 bg-gray-800 text-xs text-gray-500">Or continue with</div>
-      </div>
+     
 
-      <div class="grid grid-cols-3 gap-3 mb-6">
-        <button class="py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center border border-gray-700 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.087.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.748-1.026 2.748-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.14 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/>
-          </svg>
-        </button>
-        <button class="py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center border border-gray-700 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
-          </svg>
-        </button>
-        <button class="py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center border border-gray-700 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
-          </svg>
-        </button>
-      </div>
-
-      <p class="text-sm text-center text-gray-400" data-aos="fade-up" data-aos-delay="700">
-        Don't have an account?
-        <a href="{{ route('register') }}" class="text-accent-blue hover:text-accent-hover font-medium">Create account</a>
-      </p>
+      
     </div>
   </div>
 

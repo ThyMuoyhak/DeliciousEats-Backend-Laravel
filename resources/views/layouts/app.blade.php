@@ -38,6 +38,17 @@
     <ul class="flex-1 text-white font-inter text-sm space-y-1">
         <li><a href="/dashboard" class="{{ request()->is('dashboard') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>Dashboard</a></li>
         <li><a href="/employees" class="{{ request()->is('employees*') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-users w-5 h-5 mr-3"></i>Employees</a></li>
+        <li>
+            <a href="/products" class="{{ request()->is('products') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200">
+                <i class="fas fa-box w-5 h-5 mr-3"></i>Products
+            </a>
+        </li>
+        <li>
+            <a href="/categories" class="{{ request()->is('products/categories') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200">
+                <i class="fas fa-tags w-5 h-5 mr-3"></i>Categories
+            </a>
+        </li>
+        
         <li><a href="/projects" class="{{ request()->is('projects') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-briefcase w-5 h-5 mr-3"></i>Projects</a></li>
         <li><a href="{{ route('messages.index') }}" class="{{ request()->is('messages*') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-envelope w-5 h-5 mr-3"></i>Messages</a></li>
         <li><a href="/reports" class="{{ request()->is('reports') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-chart-bar w-5 h-5 mr-3"></i>Reports</a></li>

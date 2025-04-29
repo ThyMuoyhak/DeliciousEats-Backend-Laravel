@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Product; // Import the Product model
 
 class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+        // Get input from the request
         $search = $request->input('search');
         $department = $request->input('department');
         $status = $request->input('status');
@@ -56,8 +58,14 @@ class DashboardController extends Controller
         // Get unique departments for filter dropdown
         $departments = Employee::select('department')->distinct()->orderBy('department')->pluck('department');
     
+        // Fetch products and pass them to the view
+        $products = Product::all(); // You can change this to paginate if needed: Product::paginate(10);
+    
         // Pass variables to the view
-        return view('dashboard', compact('employees', 'departments', 'search', 'department', 'status', 'sort', 'direction', 'totalEmployees', 'activeEmployees', 'onLeaveEmployees', 'departmentCounts'));
+        return view('dashboard', compact(
+            'employees', 'products', 'departments', 'search', 'department', 
+            'status', 'sort', 'direction', 'totalEmployees', 'activeEmployees', 
+            'onLeaveEmployees', 'departmentCounts'
+        ));
     }
-
 }
