@@ -1,64 +1,136 @@
-<!-- resources/views/products/edit.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4 py-8 bg-gray-900 text-gray-100 min-h-screen">
-    <h1 class="text-3xl font-bold mb-6" data-aos="fade-down">Edit Product</h1>
+<div class="container mx-auto px-4 py-6 bg-gray-900 text-gray-100 min-h-screen">
+    <h1 class="text-3xl font-semibold mb-6" data-aos="fade-down">Edit Product</h1>
 
     <!-- Success Message -->
     @if (session('success'))
-        <div class="bg-green-800 border border-green-600 text-green-200 px-4 py-3 rounded mb-6" data-aos="fade-down" data-aos-delay="100">
+        <div class="bg-green-800 border border-green-600 text-green-200 px-4 py-3 rounded mb-6" data-aos="fade-up" data-aos-delay="50">
             {{ session('success') }}
         </div>
     @endif
 
     <!-- Error Message -->
     @if ($errors->any())
-        <div class="bg-red-800 border border-red-600 text-red-200 px-4 py-3 rounded mb-6" data-aos="fade-down" data-aos-delay="100">
-            <ul class="list-disc list-inside">
+        <div class="bg-red-800 border border-red-600 text-red-200 px-4 py-3 rounded mb-6" data-aos="fade-up" data-aos-delay="50">
+            <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
     @elseif (session('error'))
-        <div class="bg-red-800 border border-red-600 text-red-200 px-4 py-3 rounded mb-6" data-aos="fade-down" data-aos-delay="100">
+        <div class="bg-red-800 border border-red-600 text-red-200 px-4 py-3 rounded mb-6" data-aos="fade-up" data-aos-delay="50">
             {{ session('error') }}
         </div>
     @endif
 
-    <form action="{{ route('products.update', $product->pro_id) }}" method="POST" enctype="multipart/form-data" class="w-full" data-aos="fade-up" data-aos-delay="200">
+    <form action="{{ route('products.update', $product->pro_id) }}" method="POST" enctype="multipart/form-data" class="space-y-6" data-aos="fade-up" data-aos-delay="100">
         @csrf
         @method('PUT')
 
         <!-- Product Code -->
-        <div class="mb-4">
-            <label for="pro_code" class="block text-sm font-semibold mb-2">Product Code</label>
-            <input type="text" name="pro_code" id="pro_code" value="{{ old('pro_code', $product->pro_code) }}" required
-                   class="bg-gray-800 border border-gray-700 rounded w-full py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div>
+            <label for="pro_code" class="block text-sm font-medium text-gray-300">Product Code</label>
+            <input type="text" id="pro_code" name="pro_code" value="{{ old('pro_code', $product->pro_code) }}" required
+                   class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
             @error('pro_code')
                 <span class="text-red-400 text-sm">{{ $message }}</span>
             @enderror
         </div>
 
         <!-- Product Name -->
-        <div class="mb-4">
-            <label for="pro_name" class="block text-sm font-semibold mb-2">Product Name</label>
-            <input type="text" name="pro_name" id="pro_name" value="{{ old('pro_name', $product->pro_name) }}" required
-                   class="bg-gray-800 border border-gray-700 rounded w-full py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div>
+            <label for="pro_name" class="block text-sm font-medium text-gray-300">Product Name</label>
+            <input type="text" id="pro_name" name="pro_name" value="{{ old('pro_name', $product->pro_name) }}" required
+                   class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
             @error('pro_name')
                 <span class="text-red-400 text-sm">{{ $message }}</span>
             @enderror
         </div>
 
+        <!-- Quantity -->
+        <div>
+            <label for="qty" class="block text-sm font-medium text-gray-300">Quantity</label>
+            <input type="number" id="qty" name="qty" value="{{ old('qty', $product->qty) }}" required min="0"
+                   class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            @error('qty')
+                <span class="text-red-400 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!-- Price -->
+        <div>
+            <label for="price" class="block text-sm font-medium text-gray-300">Price</label>
+            <input type="number" id="price" name="price" value="{{ old('price', $product->price) }}" required min="0" step="0.01"
+                   class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            @error('price')
+                <span class="text-red-400 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!-- Description -->
+        <div>
+            <label for="description" class="block text-sm font-medium text-gray-300">Description</label>
+            <textarea id="description" name="description"
+                      class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('description', $product->description) }}</textarea>
+            @error('description')
+                <span class="text-red-400 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!-- Discount -->
+        <div>
+            <label for="discount" class="block text-sm font-medium text-gray-300">Discount (%)</label>
+            <input type="number" id="discount" name="discount" value="{{ old('discount', $product->discount) }}" min="0" max="100"
+                   class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            @error('discount')
+                <span class="text-red-400 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!-- Current Image Preview -->
+        <div>
+            <label class="block text-sm font-medium text-gray-300">Current Image</label>
+            @if ($product->image)
+                <img src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}"
+                     alt="{{ $product->pro_name }}" class="h-24 w-24 object-cover rounded mt-2"
+                     loading="lazy" onerror="this.src='/images/fallback.jpg'">
+            @else
+                <span class="text-gray-400">No Image</span>
+            @endif
+        </div>
+
+        <!-- Image Upload -->
+        <div>
+            <label for="image" class="block text-sm font-medium text-gray-300">New Image (Upload)</label>
+            <input type="file" id="image" name="image"
+                   class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            @error('image')
+                <span class="text-red-400 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!-- Image URL -->
+        <div>
+            <label for="image_url" class="block text-sm font-medium text-gray-300">New Image (URL)</label>
+            <input type="url" id="image_url" name="image_url" value="{{ old('image_url', filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : '') }}"
+                   placeholder="https://example.com/image.jpg"
+                   class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <p class="text-gray-400 text-sm mt-1">Enter an external image URL or upload an image above. URL takes precedence if both are provided.</p>
+            @error('image_url')
+                <span class="text-red-400 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
         <!-- Category -->
-        <div class="mb-4">
-            <label for="category_id" class="block text-sm font-semibold mb-2">Category</label>
+        <div>
+            <label for="category_id" class="block text-sm font-medium text-gray-300">Category</label>
             <select name="category_id" id="category_id"
-                    class="bg-gray-800 border border-gray-700 rounded w-full py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="" {{ old('category_id', $product->category_id) === null ? 'selected' : '' }}>Select a category (optional)</option>
-                @foreach ($categories as $category)
+                    class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="" {{ old('category_id', $product->category_id) === null ? 'selected' : '' }}>Select a Category (Optional)</option>
+                @foreach($categories as $category)
                     <option value="{{ $category->cat_id }}" {{ old('category_id', $product->category_id) == $category->cat_id ? 'selected' : '' }}>
                         {{ $category->cat_name }}
                     </option>
@@ -69,67 +141,14 @@
             @enderror
         </div>
 
-        <!-- Quantity -->
-        <div class="mb-4">
-            <label for="qty" class="block text-sm font-semibold mb-2">Quantity</label>
-            <input type="number" name="qty" id="qty" value="{{ old('qty', $product->qty) }}" required min="0"
-                   class="bg-gray-800 border border-gray-700 rounded w-full py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            @error('qty')
-                <span class="text-red-400 text-sm">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!-- Price -->
-        <div class="mb-4">
-            <label for="price" class="block text-sm font-semibold mb-2">Price</label>
-            <input type="number" name="price" id="price" step="0.01" value="{{ old('price', $product->price) }}" required min="0"
-                   class="bg-gray-800 border border-gray-700 rounded w-full py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            @error('price')
-                <span class="text-red-400 text-sm">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!-- Description -->
-        <div class="mb-4">
-            <label for="description" class="block text-sm font-semibold mb-2">Description</label>
-            <textarea name="description" id="description" rows="4"
-                      class="bg-gray-800 border border-gray-700 rounded w-full py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('description', $product->description) }}</textarea>
-            @error('description')
-                <span class="text-red-400 text-sm">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!-- Discount -->
-        <div class="mb-4">
-            <label for="discount" class="block text-sm font-semibold mb-2">Discount (%)</label>
-            <input type="number" name="discount" id="discount" step="0.01" value="{{ old('discount', $product->discount) }}" min="0" max="100"
-                   class="bg-gray-800 border border-gray-700 rounded w-full py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            @error('discount')
-                <span class="text-red-400 text-sm">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!-- Image -->
-        <div class="mb-6">
-            <label for="image" class="block text-sm font-semibold mb-2">Image</label>
-            <input type="file" name="image" id="image"
-                   class="bg-gray-800 border border-gray-700 rounded w-full py-2 px-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            @error('image')
-                <span class="text-red-400 text-sm">{{ $message }}</span>
-            @enderror
-            @if ($product->image)
-                <p class="text-gray-400 mt-2">Current image: 
-                    <a href="{{ Storage::url($product->image) }}" target="_blank" class="underline text-blue-400 hover:text-blue-600">View</a>
-                </p>
-            @endif
-        </div>
-
         <!-- Submit and Cancel Buttons -->
-        <div class="flex items-center gap-4">
-            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl transition duration-200">
+        <div class="flex space-x-3">
+            <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 Update Product
             </button>
-            <a href="{{ route('products.index') }}" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-xl transition duration-200">
+            <a href="{{ route('products.index') }}"
+               class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500">
                 Cancel
             </a>
         </div>
@@ -138,7 +157,7 @@
 @endsection
 
 @push('scripts')
-<!-- Include AOS -->
+<!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({

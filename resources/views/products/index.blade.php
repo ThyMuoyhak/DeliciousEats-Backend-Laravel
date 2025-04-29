@@ -1,5 +1,3 @@
-<!-- resources/views/products/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -65,7 +63,13 @@
                     <tr class="hover:bg-gray-700 transition duration-150">
                         <td class="border border-gray-700 p-3">
                             @if ($product->image)
-                                <img src="{{ Storage::url($product->image) }}" alt="{{ $product->pro_name }}" class="h-16 w-16 object-cover rounded">
+                                <img 
+                                    src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}" 
+                                    alt="{{ $product->pro_name }}" 
+                                    class="h-16 w-16 object-cover rounded" 
+                                    loading="lazy" 
+                                    onerror="this.src='/images/fallback.jpg'"
+                                >
                             @else
                                 <span class="text-gray-400">No Image</span>
                             @endif

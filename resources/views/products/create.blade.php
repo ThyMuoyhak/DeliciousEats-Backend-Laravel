@@ -89,12 +89,24 @@
             @enderror
         </div>
 
-        <!-- Image -->
+        <!-- Image Upload -->
         <div>
-            <label for="image" class="block text-sm font-medium text-gray-300">Product Image</label>
+            <label for="image" class="block text-sm font-medium text-gray-300">Product Image (Upload)</label>
             <input type="file" id="image" name="image"
                    class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
             @error('image')
+                <span class="text-red-400 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!-- Image URL -->
+        <div>
+            <label for="image_url" class="block text-sm font-medium text-gray-300">Product Image (URL)</label>
+            <input type="url" id="image_url" name="image_url" value="{{ old('image_url') }}"
+                   placeholder="https://example.com/image.jpg"
+                   class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <p class="text-gray-400 text-sm mt-1">Enter an external image URL or upload an image above. URL takes precedence if both are provided.</p>
+            @error('image_url')
                 <span class="text-red-400 text-sm">{{ $message }}</span>
             @enderror
         </div>

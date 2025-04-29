@@ -26,10 +26,16 @@
             <!-- Image -->
             <div>
                 @if ($product->image)
-                    <img src="{{ Storage::url($product->image) }}" alt="{{ $product->pro_name }}" class="w-full max-w-xs object-cover rounded-lg">
-                @else
-                    <span class="text-gray-400">No Image</span>
-                @endif
+                                <img width="300px" 
+                                    src="{{ filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : Storage::url($product->image) }}" 
+                                    alt="{{ $product->pro_name }}" 
+                                    class=" object-cover rounded" 
+                                    loading="lazy" 
+                                    onerror="this.src='/images/fallback.jpg'"
+                                >
+                            @else
+                                <span class="text-gray-400">No Image</span>
+                            @endif
             </div>
             <!-- Details -->
             <div>
