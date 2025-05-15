@@ -31,7 +31,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-cyan-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
         </svg>
-        <h1 class="text-xl font-bold text-gray-100 font-inter">HR Dashboard</h1>
+        <h1 class="text-xl font-bold text-gray-100 font-inter">DeliciousEats</h1>
     </div>
 
     <!-- Navigation -->
@@ -48,6 +48,12 @@
                 <i class="fas fa-tags w-5 h-5 mr-3"></i>Categories
             </a>
         </li>
+
+        <li>
+    <a href="/carts" class="{{ request()->is('products/carts') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200">
+        <i class="fas fa-shopping-cart w-5 h-5 mr-3"></i>Carts
+    </a>
+</li>
         
         <li><a href="/projects" class="{{ request()->is('projects') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-briefcase w-5 h-5 mr-3"></i>Projects</a></li>
         <li><a href="{{ route('messages.index') }}" class="{{ request()->is('messages*') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-envelope w-5 h-5 mr-3"></i>Messages</a></li>

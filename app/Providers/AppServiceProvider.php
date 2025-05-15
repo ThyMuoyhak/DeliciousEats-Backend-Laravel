@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot()
-    {
-        Blade::component('components.card', 'card');
-    }
+{
+    Blade::component('components.card', 'card');
+}
 }

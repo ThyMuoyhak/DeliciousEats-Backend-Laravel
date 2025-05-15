@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,8 +10,8 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $primaryKey = 'cat_id'; // Specify custom primary key
-    protected $fillable = ['cat_name']; // Ensure cat_name is fillable
+    protected $primaryKey = 'cat_id';
+    protected $fillable = ['cat_name'];
 
     public function products()
     {
