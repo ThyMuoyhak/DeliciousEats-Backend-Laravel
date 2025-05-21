@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Api\OrderController;
 use Illuminate\Support\Facades\Route;
 
 // User API Routes
@@ -22,3 +23,5 @@ Route::get('/products', [ProductController::class, 'indexApi'])->name('api.produ
 Route::get('/products/{id}', [ProductController::class, 'showApi'])->name('api.products.show');
 Route::put('/products/{id}', [ProductController::class, 'updateApi'])->name('api.products.update');
 Route::delete('/products/{id}', [ProductController::class, 'destroyApi'])->name('api.products.destroy');
+
+Route::post('/orders', [OrderController::class, 'store']);

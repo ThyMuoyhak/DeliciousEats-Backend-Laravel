@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'pro_id'; // Custom primary key
+    protected $primaryKey = 'pro_id';
 
     protected $fillable = [
         'pro_code',
@@ -22,18 +22,18 @@ class Product extends Model
         'image',
     ];
 
-    // Relationship with Category
+    public function getDiscountedPriceAttribute()
+    {
+        return $this->price * (1 - ($this->discount ?? 0) / 100);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'cat_id');
     }
 
-    // Accessor for discounted price
-    public function getDiscountedPriceAttribute()
+    public function orderItems()
     {
-        if ($this->discount && $this->discount > 0) {
-            return $this->price * (1 - $this->discount / 100);
-        }
-        return $this->price;
+        return $this->hasMany(OrderItem::class, 'product_id', 'pro_id');
     }
 }

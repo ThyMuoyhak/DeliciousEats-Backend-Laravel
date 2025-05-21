@@ -3,136 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Employee</title>
-     <!-- Favicon -->
-     <link rel="icon" href="https://i.ytimg.com/vi/x_9SdeVjfe4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAHJnuMKW_ny8rT3ZCRZPM8jsPCRQ" type="image/x-icon">
+    <title>DeliciousEats | Admin</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.ytimg.com/vi/x_9SdeVjfe4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAHJnuMKW_ny8rT3ZCRZPM8jsPCRQ" type="image/x-icon">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Include Heroicons (for icons) -->
-    <script src="https://unpkg.com/@heroicons/vue@1.0.5/dist/icons.js" defer></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
-
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        sidebar: {
+                            DEFAULT: 'hsl(var(--sidebar-background))',
+                            foreground: 'hsl(var(--sidebar-foreground))',
+                            accent: 'hsl(var(--sidebar-accent))',
+                            'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+                            border: 'hsl(var(--sidebar-border))',
+                            ring: 'hsl(var(--sidebar-ring))',
+                        },
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))',
+                        },
+                        border: 'hsl(var(--border))',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        :root {
+            --sidebar-background: 222 47% 11%;
+            --sidebar-foreground: 210 40% 98%;
+            --sidebar-accent: 189 94% 43%;
+            --sidebar-accent-foreground: 222 47% 11%;
+            --sidebar-border: 217 33% 17%;
+            --sidebar-ring: 189 94% 43%;
+            
+            --primary: 189 94% 43%;
+            --primary-foreground: 222 47% 11%;
+            --border: 214 32% 91%;
+            
+            --sidebar-width: 16rem;
+            --sidebar-width-collapsed: 5rem;
+        }
+        
+        .sidebar-expanded {
+            width: var(--sidebar-width);
+            transition: width 0.3s ease;
+        }
+        
+        .sidebar-collapsed {
+            width: var(--sidebar-width-collapsed);
+            transition: width 0.3s ease;
+        }
+        
+        .sidebar-collapsed .sidebar-text,
+        .sidebar-collapsed .sidebar-group-label,
+        .sidebar-collapsed .sidebar-profile-name,
+        .sidebar-collapsed .sidebar-logo-text {
+            display: none;
+        }
+        
+        .sidebar-collapsed .sidebar-menu-item {
+            justify-content: center;
+        }
+        
+        .sidebar-collapsed .sidebar-profile {
+            justify-content: center;
+        }
+        
+        .sidebar-rail {
+            position: absolute;
+            top: 0;
+            right: -4px;
+            bottom: 0;
+            width: 4px;
+            cursor: ew-resize;
+            background: transparent;
+            z-index: 10;
+        }
+        
+        .sidebar-rail:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: hsl(var(--sidebar-border));
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-900 text-gray-100 font-poppins">
-    <div class="flex">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        <!-- Sidebar -->
-<div class="bg-gradient-to-b from-gray-900 to-gray-800 text-white w-64 min-h-screen p-4 flex flex-col shadow-2xl">
-    <!-- Logo and Title -->
-    <div class="flex items-center mb-8">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-cyan-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-        <h1 class="text-xl font-bold text-gray-100 font-inter">DeliciousEats</h1>
-    </div>
-
-    <!-- Navigation -->
-    <ul class="flex-1 text-white font-inter text-sm space-y-1">
-        <li><a href="/dashboard" class="{{ request()->is('dashboard') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>Dashboard</a></li>
-        <li><a href="/employees" class="{{ request()->is('employees*') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-users w-5 h-5 mr-3"></i>Employees</a></li>
-        <li>
-            <a href="/products" class="{{ request()->is('products') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200">
-                <i class="fas fa-box w-5 h-5 mr-3"></i>Products
-            </a>
-        </li>
-        <li>
-            <a href="/categories" class="{{ request()->is('products/categories') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200">
-                <i class="fas fa-tags w-5 h-5 mr-3"></i>Categories
-            </a>
-        </li>
-
-        <li>
-    <a href="/carts" class="{{ request()->is('products/carts') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200">
-        <i class="fas fa-shopping-cart w-5 h-5 mr-3"></i>Carts
-    </a>
-</li>
-        
-        <li><a href="/projects" class="{{ request()->is('projects') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-briefcase w-5 h-5 mr-3"></i>Projects</a></li>
-        <li><a href="{{ route('messages.index') }}" class="{{ request()->is('messages*') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-envelope w-5 h-5 mr-3"></i>Messages</a></li>
-        <li><a href="/reports" class="{{ request()->is('reports') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-chart-bar w-5 h-5 mr-3"></i>Reports</a></li>
-        <li><a href="/settings" class="{{ request()->is('settings') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-cog w-5 h-5 mr-3"></i>Settings</a></li>
-        <li><a href="/develop" class="{{ request()->is('develop') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-code w-5 h-5 mr-3"></i>Develop By</a></li>
-        <li><a href="#" class="{{ request()->is('clients') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-handshake w-5 h-5 mr-3"></i>Clients</a></li>
-        <li><a href="#" class="{{ request()->is('tasks') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-tasks w-5 h-5 mr-3"></i>Tasks</a></li>
-        <li><a href="#" class="{{ request()->is('calendar') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-calendar-alt w-5 h-5 mr-3"></i>Calendar</a></li>
-        <li><a href="#" class="{{ request()->is('announcements') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-bullhorn w-5 h-5 mr-3"></i>Announcements</a></li>
-        <li><a href="#" class="{{ request()->is('attendance') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-user-check w-5 h-5 mr-3"></i>Attendance</a></li>
-        <li><a href="#" class="{{ request()->is('departments') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-building w-5 h-5 mr-3"></i>Departments</a></li>
-        <li><a href="#" class="{{ request()->is('leaves') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-plane-departure w-5 h-5 mr-3"></i>Leaves</a></li>
-        <li><a href="#" class="{{ request()->is('payroll') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-money-bill-wave w-5 h-5 mr-3"></i>Payroll</a></li>
-        <li><a href="#" class="{{ request()->is('notifications') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-bell w-5 h-5 mr-3"></i>Notifications</a></li>
-        <li><a href="#" class="{{ request()->is('files') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-folder-open w-5 h-5 mr-3"></i>Files</a></li>
-        <li><a href="#" class="{{ request()->is('logs') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-history w-5 h-5 mr-3"></i>Logs</a></li>
-        <li><a href="#" class="{{ request()->is('support') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-life-ring w-5 h-5 mr-3"></i>Support</a></li>
-        <li><a href="#" class="{{ request()->is('profile') ? 'bg-gray-700 text-cyan-400 border-l-4 border-cyan-400' : '' }} flex items-center p-3 rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200"><i class="fas fa-user-circle w-5 h-5 mr-3"></i>Profile</a></li>
-    </ul>
-    
-
-    <!-- User Profile and Logout -->
-    <div class="mt-auto border-t border-gray-700 pt-4">
-        <div class="flex items-center p-3 mb-2">
-            <div class="h-8 w-8 rounded-full bg-gray-600 flex items-center justify-center text-gray-200 font-bold">
-                {{ auth()->user()->name[0] ?? 'U' }}
+        <div id="sidebar" class="sidebar-expanded bg-sidebar text-sidebar-foreground relative shadow-lg">
+            <!-- Sidebar Rail for resizing -->
+            <div class="sidebar-rail" id="sidebar-rail"></div>
+            
+            <!-- Logo and Title -->
+            <div class="flex items-center h-16 px-4 border-b border-sidebar-border">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-sidebar-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                    <h1 class="ml-3 text-xl font-bold sidebar-logo-text">DeliciousEats</h1>
+                </div>
+                <button id="sidebar-toggle" class="ml-auto text-sidebar-foreground hover:text-sidebar-accent transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
             </div>
-            <span class="ml-3 text-sm font-inter text-gray-200">{{ auth()->user()->name ?? 'User' }}</span>
+            
+            <!-- Navigation -->
+            <div class="py-4 flex flex-col h-[calc(100%-4rem)]">
+                <!-- Main Navigation -->
+                <div class="px-3 space-y-1">
+                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Main</div>
+                    <a href="/dashboard" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('dashboard') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
+                        <i class="fas fa-tachometer-alt w-5 h-5"></i>
+                        <span class="ml-3 sidebar-text">Dashboard</span>
+                    </a>
+                    <a href="/products" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('products') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
+                        <i class="fas fa-box w-5 h-5"></i>
+                        <span class="ml-3 sidebar-text">Products</span>
+                    </a>
+                    <a href="/categories" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('categories') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
+                        <i class="fas fa-tags w-5 h-5"></i>
+                        <span class="ml-3 sidebar-text">Categories</span>
+                    </a>
+                </div>
+                
+                <!-- Management Section -->
+                <div class="px-3 mt-6 space-y-1">
+                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Management</div>
+                    <a href="#" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('clients') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
+                        <i class="fas fa-handshake w-5 h-5"></i>
+                        <span class="ml-3 sidebar-text">Clients</span>
+                    </a>
+                    <a href="#" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('tasks') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
+                        <i class="fas fa-tasks w-5 h-5"></i>
+                        <span class="ml-3 sidebar-text">Tasks</span>
+                    </a>
+                    <a href="#" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('calendar') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
+                        <i class="fas fa-calendar-alt w-5 h-5"></i>
+                        <span class="ml-3 sidebar-text">Calendar</span>
+                    </a>
+                </div>
+                
+                <!-- Settings Section -->
+                <div class="px-3 mt-6 space-y-1">
+                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Settings</div>
+                    <a href="/settings" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('settings') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
+                        <i class="fas fa-cog w-5 h-5"></i>
+                        <span class="ml-3 sidebar-text">Settings</span>
+                    </a>
+                    <a href="/profile" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('profile') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
+                        <i class="fas fa-user-circle w-5 h-5"></i>
+                        <span class="ml-3 sidebar-text">Profile</span>
+                    </a>
+                </div>
+                
+                <!-- User Profile and Logout -->
+                <div class="mt-auto border-t border-sidebar-border pt-4 px-3">
+                    <div class="sidebar-profile flex items-center p-3 mb-2">
+                        <div class="h-9 w-9 rounded-full bg-sidebar-accent/20 flex items-center justify-center text-sidebar-accent font-bold">
+                            {{ auth()->user()->name[0] ?? 'U' }}
+                        </div>
+                        <div class="ml-3 sidebar-profile-name">
+                            <div class="text-sm font-medium">{{ auth()->user()->name ?? 'User' }}</div>
+                            <div class="text-xs text-sidebar-foreground/70">{{ auth()->user()->email ?? 'user@example.com' }}</div>
+                        </div>
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="sidebar-menu-item flex items-center h-10 w-full px-3 rounded-md text-sm font-medium text-red-400 hover:bg-red-500/10 transition-colors">
+                            <i class="fas fa-sign-out-alt w-5 h-5"></i>
+                            <span class="ml-3 sidebar-text">Logout</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            @method('POST')
-            <button type="submit" class="flex items-center p-3 w-full rounded-lg hover:bg-gray-700 hover:scale-105 transition-all duration-200 font-inter text-sm text-red-400">
-                <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i>
-                Logout
-            </button>
-        </form>
-    </div>
-</div>
-
-<!-- Font Awesome for Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<!-- Inter Font -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
-
-<style>
-    .font-inter {
-        font-family: 'Inter', sans-serif;
-    }
-    .sidebar {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-    .hover\:scale-105:hover {
-        transform: scale(1.05);
-    }
-</style>
 
         <!-- Main Content -->
-        <div class="flex-1 p-8">
-            @yield('content')
+        <div class="flex-1 overflow-auto">
+            <!-- Top Navigation Bar -->
+            <header class="h-16 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 flex items-center px-6">
+                <button id="mobile-sidebar-toggle" class="mr-4 md:hidden text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                
+                <div class="flex-1"></div>
+                
+                <!-- Right side navigation items -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 relative">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
+                    </button>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+                        <i class="fas fa-moon text-xl dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-xl"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Page Content -->
+            <main class="p-6">
+                @yield('content')
+            </main>
+            
+            <!-- Footer -->
+            <footer class="border-t border-gray-200 dark:border-gray-800 py-4 px-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                <p>
+                    Developed by <a href="https://web.facebook.com/urfavhak" class="font-medium text-primary hover:underline" target="_blank" rel="noopener noreferrer">Thy Muoyhak</a>
+                </p>
+                <p class="mt-1">
+                    &copy; 2025 DeliciousEats. All rights reserved.
+                </p>
+            </footer>
         </div>
-        
     </div>
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-6 mt-8">
-        <div class="container mx-auto text-center px-6">
-            <p class="text-sm font-medium">
-                Developed by <a href="https://web.facebook.com/urfavhak" class="font-semibold text-blue-500" target="_blank" rel="noopener noreferrer">Thy Muoyhak</a>
-            </p>
-            <p class="text-xs mt-2">
-                &copy; 2025 All rights reserved.
-            </p>
-        </div>
-    </footer>
 
     <script>
-        AOS.init();
+        // Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const mobileSidebarToggle = document.getElementById('mobile-sidebar-toggle');
+        
+        function toggleSidebar() {
+            if (sidebar.classList.contains('sidebar-expanded')) {
+                sidebar.classList.remove('sidebar-expanded');
+                sidebar.classList.add('sidebar-collapsed');
+                sidebarToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                `;
+            } else {
+                sidebar.classList.remove('sidebar-collapsed');
+                sidebar.classList.add('sidebar-expanded');
+                sidebarToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                `;
+            }
+        }
+        
+        sidebarToggle.addEventListener('click', toggleSidebar);
+        if (mobileSidebarToggle) {
+            mobileSidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('md:block');
+            });
+        }
+        
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Check for saved theme preference or use the system preference
+        const savedTheme = localStorage.getItem('theme') || 
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the saved theme
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Sidebar Rail Resize (Optional advanced feature)
+        const sidebarRail = document.getElementById('sidebar-rail');
+        let isResizing = false;
+        
+        sidebarRail.addEventListener('mousedown', (e) => {
+            isResizing = true;
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', () => {
+                isResizing = false;
+                document.removeEventListener('mousemove', handleMouseMove);
+            }, { once: true });
+        });
+        
+        function handleMouseMove(e) {
+            if (!isResizing) return;
+            
+            const newWidth = e.clientX;
+            if (newWidth >= 200 && newWidth <= 400) {
+                sidebar.style.width = `${newWidth}px`;
+                document.documentElement.style.setProperty('--sidebar-width', `${newWidth}px`);
+            }
+        }
     </script>
 </body>
 </html>
