@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SlideHeroController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\OrderController;
+
 
 // Public Routes (No Authentication Required)
 Route::middleware('guest')->group(function () {
@@ -37,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Slide Hero Routes
+    Route::resource('slide-heroes', SlideHeroController::class);
+
     // Cart/Order Routes
     Route::get('/cart', [PurchaseController::class, 'index'])->name('cart.index');
     Route::get('/cart/{order}', [OrderController::class, 'show'])->name('cart.show');
@@ -60,9 +65,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('reports', ReportController::class);
 
     Route::get('/profile', function () {
-    return view('develop.index');
-});
-
+        return view('develop.index');
+    })->name('profile');
 
     // Message Routes
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');

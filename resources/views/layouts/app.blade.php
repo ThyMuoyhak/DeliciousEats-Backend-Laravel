@@ -146,21 +146,33 @@
             <!-- Navigation -->
             <div class="py-4 flex flex-col h-[calc(100%-4rem)]">
                 <!-- Main Navigation -->
-                <div class="px-3 space-y-1">
-                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Main</div>
-                    <a href="/dashboard" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('dashboard') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
-                        <i class="fas fa-tachometer-alt w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Dashboard</span>
-                    </a>
-                    <a href="/products" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('products') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
-                        <i class="fas fa-box w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Products</span>
-                    </a>
-                    <a href="/categories" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('categories') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
-                        <i class="fas fa-tags w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Categories</span>
-                    </a>
-                </div>
+<div class="px-3 space-y-1">
+    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Main</div>
+    
+    <!-- Dashboard -->
+    <a href="/dashboard" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('dashboard') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Dashboard">
+        <i class="fas fa-tachometer-alt w-5 h-5"></i>
+        <span class="ml-3 sidebar-text">Dashboard</span>
+    </a>
+    
+    <!-- Slide -->
+    <a href="/slide-heroes" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('slide') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Slide">
+        <i class="fas fa-slideshare w-5 h-5"></i>
+        <span class="ml-3 sidebar-text">Slide</span>
+    </a>
+    
+    <!-- Products -->
+    <a href="/products" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('products') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Products">
+        <i class="fas fa-box w-5 h-5"></i>
+        <span class="ml-3 sidebar-text">Products</span>
+    </a>
+    
+    <!-- Categories -->
+    <a href="/categories" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('categories') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Categories">
+        <i class="fas fa-tags w-5 h-5"></i>
+        <span class="ml-3 sidebar-text">Categories</span>
+    </a>
+</div>
                 
                 <!-- Management Section -->
                 <div class="px-3 mt-6 space-y-1">
