@@ -174,22 +174,7 @@
     </a>
 </div>
                 
-                <!-- Management Section -->
-                <div class="px-3 mt-6 space-y-1">
-                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Management</div>
-                    <a href="#" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('clients') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
-                        <i class="fas fa-handshake w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Clients</span>
-                    </a>
-                    <a href="#" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('tasks') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
-                        <i class="fas fa-tasks w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Tasks</span>
-                    </a>
-                    <a href="#" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('calendar') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
-                        <i class="fas fa-calendar-alt w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Calendar</span>
-                    </a>
-                </div>
+               
                 
                 <!-- Settings Section -->
                 <div class="px-3 mt-6 space-y-1">
@@ -262,7 +247,7 @@
             <!-- Footer -->
             <footer class="border-t border-gray-200 dark:border-gray-800 py-4 px-6 text-center text-sm text-gray-500 dark:text-gray-400">
                 <p>
-                    Developed by <a href="https://web.facebook.com/urfavhak" class="font-medium text-primary hover:underline" target="_blank" rel="noopener noreferrer">Thy Muoyhak</a>
+                    Developed by <a href="https://web.facebook.com/urfavhak" class="font-medium text-primary hover:underline" target="_blank" rel="noopener noreferrer">XXXXXX</a>
                 </p>
                 <p class="mt-1">
                     &copy; 2025 DeliciousEats. All rights reserved.

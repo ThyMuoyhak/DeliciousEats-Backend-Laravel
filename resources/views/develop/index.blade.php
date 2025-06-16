@@ -18,8 +18,8 @@
                     <div class="absolute inset-0 -m-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full blur-md opacity-70"></div>
                     <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-gray-800 shadow-xl">
                         <img 
-                            src="https://codekhmerlearningg.vercel.app/img/hak.jpg" 
-                            alt="Thy Muoyhak" 
+                            src="" 
+                            alt="" 
                             class="w-full h-full object-cover"
                         >
                     </div>
@@ -27,7 +27,7 @@
                 
                 <!-- Profile Info -->
                 <div class="text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Thy Muoyhak</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">xxxxxx</h1>
                     <div class="inline-flex items-center px-3 py-1 rounded-full bg-cyan-600/20 text-cyan-400 text-sm font-medium mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -35,12 +35,12 @@
                         Web Developer, Designer, and Programmer
                     </div>
                     <p class="text-lg text-gray-300 max-w-2xl">
-                        Hello! I'm Thy Muoyhak, a passionate web developer with a strong background in creating modern websites and applications. I specialize in frontend and backend development, ensuring seamless user experiences.
+                        Hello! xxxxxx, a passionate web developer with a strong background in creating modern websites and applications. I specialize in frontend and backend development, ensuring seamless user experiences.
                     </p>
                     
                     <!-- Social Links -->
                     <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
-                        <a href="mailto:thymuoyhak.biu@gmail.com" class="flex items-center gap-2 px-4 py-2 bg-gray-800/80 hover:bg-gray-700 rounded-lg transition-colors">
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 bg-gray-800/80 hover:bg-gray-700 rounded-lg transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
@@ -361,7 +361,7 @@
                                 <div>
                                     <h3 class="text-white font-medium">Email</h3>
                                     <a href="mailto:thymuoyhak.biu@gmail.com" class="text-cyan-400 hover:text-cyan-300 transition-colors">
-                                        thymuoyhak.biu@gmail.com
+                                        xxxxxx@gmail.com
                                     </a>
                                 </div>
                             </div>
